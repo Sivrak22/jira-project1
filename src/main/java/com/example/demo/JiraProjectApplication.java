@@ -31,7 +31,7 @@ public class JiraProjectApplication {
 	public CommandLineRunner cliRunner() {
 		return args -> {
 			System.out.println("From Bean CLI");
-			Employee e = new Employee("Siva","superman@gmial.com","CSE",200000);
+			Employee e = new Employee("Siva","supermans@gmial.com","CSE",200000);
 			this.empSer.saveEmployee(e);
 			Employee e1 = new Employee("Siva2","superman@gmial.com","CSE",200000);
 			this.empSer.saveEmployee(e1);
