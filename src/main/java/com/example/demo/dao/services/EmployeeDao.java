@@ -7,8 +7,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.dao.entity.Employee;
 import com.example.demo.dao.repository.EmployeeRepo;
-import com.example.demo.entity.Employee;
 
 @Service
 public class EmployeeDao{

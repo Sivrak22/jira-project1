@@ -8,8 +8,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import com.example.demo.dao.entity.Employee;
 import com.example.demo.dao.services.EmployeeDao;
-import com.example.demo.entity.Employee;
 
 @SpringBootApplication
 public class JiraProjectApplication {
