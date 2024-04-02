@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.dao.entity.Employee;
 import com.example.demo.dao.repository.EmployeeRepo;
+import com.example.demo.exceptions.ResourceNotFoundException;
 
 @Service
 public class EmployeeDao{
@@ -22,13 +23,12 @@ public class EmployeeDao{
 	public List<Employee> getAllEmp(){
 		return this.empRepo.findAll();
 	}
-	
 	public Employee getEmpById(Long id) {
-		return this.empRepo.findById(id).orElseThrow(()-> new RuntimeException("Employee Not Found"));
+		return this.empRepo.findById(id).orElseThrow(()-> new ResourceNotFoundException("Employee Not Found"));
 	}
 	
 	public Employee updateEmp(Long eid, Employee newEmp) {
-		Employee existing = this.empRepo.findById(eid).orElseThrow(()-> new RuntimeException("Employee Not Found!"));
+		Employee existing = this.empRepo.findById(eid).orElseThrow(()-> new ResourceNotFoundException("Employee Not Found!"));
 		existing.setName(newEmp.getName());
 		existing.setEmail(newEmp.getEmail());
 		existing.setDepartment(newEmp.getDepartment());
@@ -37,7 +37,7 @@ public class EmployeeDao{
 	}
 	
 	public void deleteEmp(Long id) {
-		Employee e = this.empRepo.findById(id).orElseThrow(()-> new RuntimeException("Employee Not Found"));
+		Employee e = this.empRepo.findById(id).orElseThrow(()-> new ResourceNotFoundException("Employee Not Found"));
 		this.empRepo.delete(e);
 	}
 }
