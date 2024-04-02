@@ -23,6 +23,11 @@ public class EmployeeDao{
 	public List<Employee> getAllEmp(){
 		return this.empRepo.findAll();
 	}
+	
+	public List<Employee> findByNameOrEmail(String val){
+//		return this.empRepo.findByNameOrEmailContaining(val,val);
+		return this.empRepo.findByNameContainingOrEmailContaining(val,val);
+	}
 	public Employee getEmpById(Long id) {
 		return this.empRepo.findById(id).orElseThrow(()-> new ResourceNotFoundException("Employee Not Found"));
 	}

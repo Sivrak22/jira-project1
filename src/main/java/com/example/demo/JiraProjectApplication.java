@@ -31,14 +31,16 @@ public class JiraProjectApplication {
 	public CommandLineRunner cliRunner() {
 		return args -> {
 			System.out.println("From Bean CLI");
-			Employee e = new Employee("Siva","supermans@gmial.com","CSE",200000);
+			Employee e = new Employee("Siva","supermans@gmial.com","CSE",100);
 			this.empSer.saveEmployee(e);
-			Employee e1 = new Employee("Siva2","superman@gmial.com","CSE",200000);
+			Employee e1 = new Employee("Siva2","superman@gmial.com","CSE",105);
 			this.empSer.saveEmployee(e1);
-			Employee e2 = new Employee("Siva2","no2superman@gmial.com","CSE",2000011);
+			Employee e6 = new Employee("Siva26","superman6@gmial.com","CSE",105);
+			this.empSer.saveEmployee(e6);
+			Employee e2 = new Employee("Siva2","no2superman@gmial.com","CSE",110);
 			this.empSer.updateEmp(2l, e2);
 			System.out.println(this.empSer.getAllEmp().stream().map((Employee v)->{System.out.println(v.getName()+","+v.getEmail());return v;}).collect(Collectors.toList()));
-			this.empSer.deleteEmp(1L);
+//			this.empSer.deleteEmp(1L);
 			};
 	 }
 }

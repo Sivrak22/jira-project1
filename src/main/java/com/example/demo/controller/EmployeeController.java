@@ -76,4 +76,20 @@ public class EmployeeController {
 		this.empDao.deleteEmp(id);
 		return new ResponseEntity<SimpleReponseDTO>(new SimpleReponseDTO("Deleted Employee", "Success"),HttpStatus.OK);
 	}
+	
+	@GetMapping("/empby/{val}")
+	public ResponseEntity<List<EmployeeDTO>> findByNameOrEmail( @PathVariable String val){
+		List<EmployeeDTO> allEmp = this.empDao.findByNameOrEmail(val).stream().map(emp->{return new ModelMapper().map(emp, EmployeeDTO.class);}).collect(Collectors.toList());
+		return new ResponseEntity<List<EmployeeDTO>>(allEmp,HttpStatus.OK);
+	}
+
+	@GetMapping("/emp/operate")
+	public ResponseEntity<Map<String,List<EmployeeDTO>>> getAllEmployeeOperate(){
+		Map<String,List<EmployeeDTO>> allEmp = this.empDao.getAllEmp().stream()
+				.map(emp->{return new ModelMapper().map(emp, EmployeeDTO.class);})
+				.filter(val->val.getSalary()>10)
+				.sorted((a,b)-> Double.compare(b.getSalary(), a.getSalary()))
+				.collect(Collectors.groupingBy(EmployeeDTO::getDepartment));
+		return new ResponseEntity<Map<String,List<EmployeeDTO>>>(allEmp,HttpStatus.OK);
+	}
 }
